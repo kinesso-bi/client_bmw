@@ -133,3 +133,5 @@ dmypy.json
 **/service_account.json
 **/dfareporing.dat
 **/client_secrets.json
+**/analyticsreporting.dat
+**/oauth_client.json
