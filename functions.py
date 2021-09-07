@@ -1,6 +1,8 @@
+import requests
 from google.api_core.exceptions import BadRequest, Conflict, NotFound
 from google.cloud import bigquery
 from google.oauth2 import service_account
+from requests.models import Response
 
 
 def create_client():
@@ -38,3 +40,12 @@ def upload_data(dataset_name: str, table_name: str, input_data):
 
     except (BadRequest, Conflict, NotFound) as e:
         print('ERROR: {}'.format(e))
+
+
+def get_stream(get_url, get_app_id=None, get_report_type=None):
+    response = requests.get(url=get_url)
+    if response.status_code != 200:
+        print(response.status_code)
+    else:
+        stream: Response = response
+        return stream
