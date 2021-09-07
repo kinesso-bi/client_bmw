@@ -132,3 +132,4 @@ dmypy.json
 **/credentials.json
 **/service_account.json
 **/dfareporing.dat
+**/client_secrets.json
