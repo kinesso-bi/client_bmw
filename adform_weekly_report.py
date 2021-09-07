@@ -120,8 +120,8 @@ def read_location(scope, location):
     if response.status_code != 200:
         with open("client_secrets.json", "r") as jsonFile:
             data = json.load(jsonFile)
-        client_id = data[scope]["client_id"]
-        client_secret = data[scope]["client_secret"]
+        client_id = data["adform"][scope]["client_id"]
+        client_secret = data["adform"][scope]["client_secret"]
         post_operation(client_id, client_secret, scope)
 
     else:
@@ -137,8 +137,8 @@ def read_location(scope, location):
 def setup(scope):
     with open("client_secrets.json", "r") as jsonFile:
         data = json.load(jsonFile)
-    client_id = data[scope]["client_id"]
-    client_secret = data[scope]["client_secret"]
+    client_id = data["adform"][scope]["client_id"]
+    client_secret = data["adform"][scope]["client_secret"]
     post_operation(client_id, client_secret, scope)
 
 
