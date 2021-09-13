@@ -59,7 +59,7 @@ def get_insights(campaigns, since: datetime, until: datetime):
             pass
 
 
-def main():
+def main() -> object:
     with open('client_secrets.json') as file:
         credentials = json.load(file)
 

@@ -76,7 +76,7 @@ def get_response(response):
         return df
 
 
-def main():
+def main() -> object:
     views = ['179973098', '184430432']
     now = datetime.now()
     date_end = now - timedelta(days=now.weekday() + 1)
@@ -89,7 +89,3 @@ def main():
             functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
         elif view == '184430432':
             functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
-
-
-if __name__ == '__main__':
-    main()

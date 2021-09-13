@@ -134,13 +134,9 @@ def read_location(scope, location):
         return df
 
 
-def main(scope):
+def main(scope: object) -> object:
     with open("client_secrets.json", "r") as jsonFile:
         data = json.load(jsonFile)
     client_id = data["adform"][scope]["client_id"]
     client_secret = data["adform"][scope]["client_secret"]
     post_operation(client_id, client_secret, scope)
-
-
-if __name__ == '__main__':
-    main(scope="bmw")
