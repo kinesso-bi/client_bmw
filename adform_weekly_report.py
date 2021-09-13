@@ -101,7 +101,7 @@ def read_operation_status(scope, operation):
         "https://api.adform.com/{}".format(operation),
         headers={"Authorization": "Bearer {}".format(access_token)}
     )
-
+    time.sleep(5)
     if 200 == response.status_code:
         pass
     else:
@@ -134,7 +134,7 @@ def read_location(scope, location):
         return df
 
 
-def setup(scope):
+def main(scope):
     with open("client_secrets.json", "r") as jsonFile:
         data = json.load(jsonFile)
     client_id = data["adform"][scope]["client_id"]
@@ -143,4 +143,4 @@ def setup(scope):
 
 
 if __name__ == '__main__':
-    setup(scope="bmw")
+    main(scope="bmw")

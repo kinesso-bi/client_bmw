@@ -59,11 +59,12 @@ def get_insights(campaigns, since: datetime, until: datetime):
             pass
 
 
-with open('client_secrets.json') as file:
-    credentials = json.load(file)
+def main():
+    with open('client_secrets.json') as file:
+        credentials = json.load(file)
 
-now = datetime.now()
-date_end = now - timedelta(days=now.weekday() + 1)
-date_start = date_end - timedelta(days=6)
+    now = datetime.now()
+    date_end = now - timedelta(days=now.weekday() + 1)
+    date_start = date_end - timedelta(days=6)
 
-get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
+    get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)

@@ -13,8 +13,6 @@ import functions
 
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 CLIENT_SECRETS_PATH = "oauth_client.json"
-VIEW_ID = '179973098'
-VIEW_ID = '184430432'
 
 
 def initialize_analyticsreporting():
