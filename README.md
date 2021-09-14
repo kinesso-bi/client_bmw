@@ -16,3 +16,4 @@ Directory contains subfolders with scripts for automation pipelines.
 
 * [python-bigquery](https://github.com/googleapis/python-bigquery)
 * [adform-fields](https://supermetrics.com/api/getFields?ds=ADF)
+* [google-analytics](https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-py)
