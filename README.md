@@ -10,7 +10,6 @@ Directory contains subfolders with scripts for automation pipelines.
 
 **Tomasz Pionka**
 - [Profile](https://github.com/tomaszpionka "Tomasz Pionka")
-- [Email](mailto:tomasz.pionka@protonmail.com?subject=Kinesso "Hi!")
 
 # Acknowledgments
 
