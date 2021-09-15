@@ -8,8 +8,7 @@ Directory contains subfolders with scripts for automation pipelines.
 
 # Authors
 
-**Tomasz Pionka**
-- [Profile](https://github.com/tomaszpionka "Tomasz Pionka")
+- [Tomasz Pionka](https://github.com/tomaszpionka "GitHub")
 
 # Acknowledgments
 
