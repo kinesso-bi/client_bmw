@@ -4,37 +4,22 @@ from datetime import datetime, timedelta
 
 import httplib2
 import pandas as pd
-from apiclient.discovery import build
-from oauth2client import client
-from oauth2client import file
-from oauth2client import tools
+from googleapiclient.discovery import build
+from oauth2client.service_account import ServiceAccountCredentials
 
 import functions
 
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
-CLIENT_SECRETS_PATH = "oauth_client.json"
+CLIENT_SECRETS_PATH = 'service_account.json'
 
 
 def initialize_analyticsreporting():
-    # Set up a Flow object to be used if we need to authenticate.
-    flow = client.flow_from_clientsecrets(
-        CLIENT_SECRETS_PATH, scope=SCOPES,
-        message=tools.message_if_missing(CLIENT_SECRETS_PATH))
-
-    # Prepare credentials, and authorize HTTP object with them.
-    # If the credentials don't exist or are invalid run through the native client
-    # flow. The Storage object will ensure that if successful the good
-    # credentials will get written back to a file.
-    storage = file.Storage('analyticsreporting.dat')
-    credentials = storage.get()
-    if credentials is None or credentials.invalid:
-        credentials = tools.run_flow(flow, storage)
-    http = credentials.authorize(http=httplib2.Http())
-
-    # Build the service object.
-    analytics = build('analyticsreporting', 'v4', http=http)
-
-    return analytics
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(CLIENT_SECRETS_PATH, SCOPES)
+    # Create a service object
+    http = credentials.authorize(httplib2.Http())
+    service = build('analytics', 'v4', http=http,
+                    discoveryServiceUrl=('https://analyticsreporting.googleapis.com/$discovery/rest'))
+    return service
 
 
 def get_report(analytics, view_id: str, since: datetime, until: datetime):
@@ -48,13 +33,14 @@ def get_report(analytics, view_id: str, since: datetime, until: datetime):
                   {'name': 'ga:sourceMedium'},
                   ]
 
-    return analytics.reports().batchGet(
+    response = analytics.reports().batchGet(
         body={'reportRequests': [{'viewId': view_id,
                                   'dateRanges': dateRanges,
                                   'metrics': metrics,
                                   'dimensions': dimensions,
                                   }]}
     ).execute()
+    return response
 
 
 def get_response(response):
@@ -89,3 +75,4 @@ def main() -> object:
             functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
         elif view == '184430432':
             functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
+    return True
