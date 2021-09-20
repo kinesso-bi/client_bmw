@@ -13,7 +13,8 @@ def get_insights(campaigns, since: datetime, until: datetime):
             credentials = json.load(file)
     except FileNotFoundError as f:
         # functions.error_log(1, 1, f.args[0], f.args[1])
-        quit()
+        print(1, 1, f.args[0], f.args[1])
+        return
 
     params = {
         'api_token': credentials['facebook']['api_token'],
@@ -68,3 +69,4 @@ def main() -> object:
     date_start = date_end - timedelta(days=6)
 
     get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
+    return True
