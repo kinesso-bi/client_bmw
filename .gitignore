@@ -136,3 +136,4 @@ dmypy.json
 **/analyticsreporting.dat
 **/oauth_client.json
 **/*.csv
+**/*.xlsx
