@@ -1,7 +1,7 @@
 """Hello Analytics Reporting API V4."""
 
 from datetime import datetime, timedelta
-
+import os
 import httplib2
 import pandas as pd
 from googleapiclient.discovery import build
@@ -10,7 +10,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 import functions
 
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
-CLIENT_SECRETS_PATH = 'service_account.json'
+path = os.path.dirname(os.path.realpath(__file__))
+CLIENT_SECRETS_PATH = '{}/service_account.json'.format(path)
 
 
 def initialize_analyticsreporting():

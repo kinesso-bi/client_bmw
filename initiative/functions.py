@@ -3,11 +3,13 @@ from google.api_core.exceptions import BadRequest, Conflict, NotFound
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from requests.models import Response
+import os
 
 
 def create_client():
     # TODO(developer): Set key_path to the path to the service account key file.
-    key_path = "service_account.json"
+    path = os.path.dirname(os.path.realpath(__file__))
+    key_path = "{}/service_account.json".format(path)
     credentials = service_account.Credentials.from_service_account_file(
         key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
     )

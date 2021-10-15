@@ -1,10 +1,14 @@
 import json
 import time
-
 import pandas as pd
 import requests
-
 import functions
+import os
+
+
+path = os.path.dirname(os.path.realpath(__file__))
+client_file = '{}/client_secrets.json'.format(path)
+credentials_file = '{}/credentials.json'.format(path)
 
 
 def create_access_token(client_id, client_secret):
@@ -19,17 +23,17 @@ def create_access_token(client_id, client_secret):
 
 
 def read_access_token(scope):
-    with open("credentials.json", "r") as jsonFile:
+    with open(credentials_file, "r") as jsonFile:
         data = json.load(jsonFile)
     access_token = data[scope]["token"]
     return access_token
 
 
 def update_access_token(scope, access_token):
-    with open("credentials.json", "r") as jsonFile:
+    with open(credentials_file, "r") as jsonFile:
         data = json.load(jsonFile)
     data[scope]["token"] = access_token
-    with open("credentials.json.", "w") as jsonFile:
+    with open(credentials_file, "w") as jsonFile:
         json.dump(data, jsonFile)
 
 
@@ -114,7 +118,7 @@ def read_location(scope, location):
     )
     time.sleep(10)
     if response.status_code != 200:
-        with open("client_secrets.json", "r") as jsonFile:
+        with open(client_file, "r") as jsonFile:
             data = json.load(jsonFile)
         client_id = data["adform"][scope]["client_id"]
         client_secret = data["adform"][scope]["client_secret"]
@@ -131,7 +135,7 @@ def read_location(scope, location):
 
 
 def main(scope: object) -> object:
-    with open("client_secrets.json", "r") as jsonFile:
+    with open(client_file, "r") as jsonFile:
         data = json.load(jsonFile)
     client_id = data["adform"][scope]["client_id"]
     client_secret = data["adform"][scope]["client_secret"]

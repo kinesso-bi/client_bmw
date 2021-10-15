@@ -1,7 +1,7 @@
 import json
 import time
 from datetime import datetime, timedelta
-
+import os
 import pandas as pd
 
 import functions
@@ -61,9 +61,9 @@ def get_insights(campaigns, since: datetime, until: datetime):
 
 
 def main() -> object:
-    with open('client_secrets.json') as file:
+    path = os.path.dirname(os.path.realpath(__file__))
+    with open('{}/client_secrets.json'.format(path)) as file:
         credentials = json.load(file)
-
     now = datetime.now()
     date_end = now - timedelta(days=now.weekday() + 1)
     date_start = date_end - timedelta(days=6)
