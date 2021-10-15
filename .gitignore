@@ -137,3 +137,9 @@ dmypy.json
 **/oauth_client.json
 **/*.csv
 **/*.xlsx
+**/logs.txt
+**/errors.txt
+**/logs.html
+**/*.sh
+*.sh
+**/*.sh.*
