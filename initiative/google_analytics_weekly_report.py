@@ -62,17 +62,35 @@ def get_response(response):
         return df
 
 
-def main() -> object:
+def main(date_start=None, date_end=None) -> object:
     views = ['179973098', '184430432']
     now = datetime.now()
-    date_end = now - timedelta(days=now.weekday() + 1)
-    date_start = date_end - timedelta(days=6)
+    if not date_end or not date_start:
+        date_end = now - timedelta(days=now.weekday() + 1)
+        date_start = date_end - timedelta(days=6)
+    print('function', date_start, date_end)
     for view in views:
         analytics = initialize_analyticsreporting()
         response = get_report(analytics, view_id=view, since=date_start, until=date_end)
         upload = get_response(response)
         if view == '179973098':
-            functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
+            print(view)
+            # functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
         elif view == '184430432':
-            functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
+            print(view)
+            # functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
     return True
+
+
+# date_start = datetime.strptime('2020-01-01', "%Y-%m-%d")
+# date_end = datetime.strptime('2020-12-31', "%Y-%m-%d")
+# main(date_end=date_end, date_start=date_start)
+# main()
+
+# start_date = datetime.strptime('2020-12-30', "%Y-%m-%d")
+# end_date = datetime.strptime('2020-12-31', "%Y-%m-%d")
+# delta = timedelta(days=7)
+# while start_date <= end_date:
+#     print(start_date, start_date + timedelta(days=6))
+#     main(date_start=start_date, date_end=start_date + timedelta(days=6))
+#     start_date += delta
