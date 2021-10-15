@@ -67,6 +67,6 @@ def main() -> object:
     now = datetime.now()
     date_end = now - timedelta(days=now.weekday() + 1)
     date_start = date_end - timedelta(days=6)
-
-    get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
+    print(date_start, date_end)
+    # get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
     return True
