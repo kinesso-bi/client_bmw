@@ -76,10 +76,10 @@ def main(date_start=None, date_end=None) -> object:
         upload = get_response(response)
         if view == '179973098':
             print(view)
-            # functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
+            functions.upload_data(dataset_name="bmw", table_name='ga_rzj', input_data=upload)
         elif view == '184430432':
             print(view)
-            # functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
+            functions.upload_data(dataset_name="bmw", table_name='ga_kalkulator', input_data=upload)
     return True
 
 

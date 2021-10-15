@@ -8,8 +8,9 @@ import functions
 
 
 def get_insights(campaigns, since: datetime, until: datetime):
+    path = os.path.dirname(os.path.realpath(__file__))
     try:
-        with open('client_secrets.json') as file:
+        with open('{}/client_secrets.json'.format(path)) as file:
             credentials = json.load(file)
     except FileNotFoundError as f:
         # functions.error_log(1, 1, f.args[0], f.args[1])
@@ -67,6 +68,5 @@ def main() -> object:
     now = datetime.now()
     date_end = now - timedelta(days=now.weekday() + 1)
     date_start = date_end - timedelta(days=6)
-    print(date_start, date_end)
-    # get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
+    get_insights(campaigns=credentials['facebook']['bmw']['ids'], since=date_start, until=date_end)
     return True

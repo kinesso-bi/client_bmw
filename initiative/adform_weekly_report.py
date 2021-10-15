@@ -139,6 +139,5 @@ def main(scope: object) -> object:
         data = json.load(jsonFile)
     client_id = data["adform"][scope]["client_id"]
     client_secret = data["adform"][scope]["client_secret"]
-    print("hello")
-    # post_operation(client_id, client_secret, scope)
+    post_operation(client_id, client_secret, scope)
     return
